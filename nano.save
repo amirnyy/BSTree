@@ -1,0 +1,32 @@
+struct Node {
+ int data;
+ Node* next;
+};
+auto insert(Node* first, int val) -> void;
+auto remove(Node* &first, int val) -> bool;
+auto print(Node* first) ->void;
+
+class ForwardList {
+ Node* first;
+ public:
+auto insert(int val) -> void;
+auto remove( int val) -> bool;
+auto print() ->void;
+
+ 
+};
+auto forwardlist::insert( int val) -> void {
+ first
+ this->first;
+}
+int main (){
+ Node* first = new Node {0, new Node{1,new Node{2,nullptr}}};
+insert(first,4);
+insert(first,5);
+insert(first,6);
+print(first);
+remove(first,0)
+forwardlist list{first};
+list.print();
+list.remove(3);
+}
