@@ -9,31 +9,29 @@ option(BUILD_TESTS "Build tests" OFF)
 project(BSTree)
 
 add_library(BSTree STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/binarytree.cpp)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-target_link_libraries(main BSTree)
-
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
-install(EXPORT BSTree-config DESTINATION cmake)
-
-if(BUILD_EXAMPLES)
-  file(GLOB EXAMPLE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/examples/*.cpp")
-  foreach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
-    get_filename_component(EXAMPLE_NAME ${EXAMPLE_SOURCE} NAME_WE)
-    add_executable(${EXAMPLE_NAME} ${EXAMPLE_SOURCE})
-    target_link_libraries(${EXAMPLE_NAME} BSTree)
-    install(TARGETS ${EXAMPLE_NAME}
-      RUNTIME DESTINATION bin
-    )
-  endforeach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
-endif()
-
-install(TARGETS BSTree
-    EXPORT BSTree-config
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-)
-
+  
+  target_include_directories(BSTree PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+   $<INSTALL_INTERFACE:include>
+ )
+ 
+ if(BUILD_EXAMPLES)
+   file(GLOB EXAMPLE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/examples/*.cpp")
+   foreach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
+     get_filename_component(EXAMPLE_NAME ${EXAMPLE_SOURCE} NAME_WE)
+     add_executable(${EXAMPLE_NAME} ${EXAMPLE_SOURCE})
+     target_link_libraries(${EXAMPLE_NAME} BSTree)
+     install(TARGETS ${EXAMPLE_NAME}
+       RUNTIME DESTINATION bin
+     )
+   endforeach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
+ endif()
+ 
+ install(TARGETS BSTree
+     EXPORT BSTree-config
+     ARCHIVE DESTINATION lib
+     LIBRARY DESTINATION lib
+ )
 
 
 if(BUILD_TESTS)
