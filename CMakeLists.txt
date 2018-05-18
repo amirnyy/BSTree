@@ -8,7 +8,7 @@ option(BUILD_TESTS "Build tests" OFF)
 
 project(BSTree)
 
-add_library(BStree STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/binarytree.cpp)
+add_library(BSTree STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/binarytree.cpp)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_executable(bench1 ${CMAKE_CURRENT_SOURCE_DIR}/benchmark/bench1.cpp)
