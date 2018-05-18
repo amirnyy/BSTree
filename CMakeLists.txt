@@ -11,13 +11,6 @@ project(BSTree)
 add_library(BSTree STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/binarytree.cpp)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-add_executable(bench1 ${CMAKE_CURRENT_SOURCE_DIR}/benchmark/bench1.cpp)
-add_executable(bench2 ${CMAKE_CURRENT_SOURCE_DIR}/benchmark/bench2.cpp)
-add_executable(bench3 ${CMAKE_CURRENT_SOURCE_DIR}/benchmark/bench3.cpp)
-add_executable(bench4 ${CMAKE_CURRENT_SOURCE_DIR}/benchmark/bench4.cpp)
-add_executable(bench5 ${CMAKE_CURRENT_SOURCE_DIR}/benchmark/bench5.cpp)
-add_executable(benchmark_add ${CMAKE_CURRENT_SOURCE_DIR}/benchmark/benchmark_add.cpp)
-add_executable(main ${CMAKE_CURRENT_SOURCE_DIR}/sources/*.cpp)
 target_link_libraries(main BSTree)
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
