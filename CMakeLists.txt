@@ -16,6 +16,23 @@ option(BUILD_EXAMPLES "Build Examples" OFF)
 add_library(${PROJECT_NAME} "${PROJECT_SOURCE_DIR}/sources/binarytree.cpp")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/)
 
+if(BUILD_EXAMPLES)
+  file(GLOB EXAMPLE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/examples/*.cpp")
+  foreach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
+    get_filename_component(EXAMPLE_NAME ${EXAMPLE_SOURCE} NAME_WE)
+    add_executable(${EXAMPLE_NAME} ${EXAMPLE_SOURCE})
+    target_link_libraries(${EXAMPLE_NAME} BSTree)
+    install(TARGETS ${EXAMPLE_NAME}
+      RUNTIME DESTINATION bin
+    )
+  endforeach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
+endif()
+
+install(TARGETS BSTree
+    EXPORT BSTree-config
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+)
 if(BUILD_TESTS)
   hunter_add_package(Catch)
   find_package(Catch CONFIG REQUIRED)
