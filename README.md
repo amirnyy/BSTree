@@ -1,4 +1,4 @@
-##BSTree
+BSTree
 ```ShellSession
 $ cmake -H. -B_build -DBUILD_TESTS=ON
 $ cmake --build _build --target install
