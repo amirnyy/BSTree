@@ -1,3 +1,6 @@
+#include <catch.hpp>
+#include "binarytree.hpp"
+
 TEST_CASE("Creating tree") 
 {
     binarytree tree{5,3,6};
